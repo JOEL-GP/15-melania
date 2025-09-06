@@ -64,9 +64,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            object-fit: cover; /* Asegura que las imágenes cubran su área sin distorsión */
-            height: 250px; /* Altura fija para uniformidad en la galería */
+            object-fit: contain; /* Asegura que las imágenes se muestren completas */
             width: 100%;
+            /* Eliminado: height: 250px; para que se adapte al contenido completo */
         }
         .image-gallery img:hover {
             transform: scale(1.03); /* Zoom más sutil */
