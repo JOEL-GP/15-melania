@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quince Años de Melania</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+    <style>
+        @keyframes subtle-glow {
+            0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.1); }
+            50% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); }
+        }
+        .animate-subtle-glow {
+            animation: subtle-glow 3s infinite ease-in-out;
+        }
+        body {
+            color: #F0F0F0;
+            font-family: 'Poppins', sans-serif; /* Poppins para el texto general */
+            line-height: 1.6;
+            background-color: #1A1A1A;
+            overflow-x: hidden; /* Evita el scroll horizontal si las partículas se desbordan un poco */
+        }
+        h1, h2 {
+            text-shadow: none;
+            font-family: 'Dancing Script', cursive; /* Dancing Script para títulos */
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #DDA0DD;
+        }
+        .content-front {
+            position: relative;
+            z-index: 10;
+        }
+        #musicBtn {
+            background-color: rgba(218, 112, 214, 0.8);
+            color: #FFF;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 1px solid #DDA0DD;
+        }
+        #musicBtn:hover {
+            background-color: #DDA0DD;
+            transform: scale(1.05);
+        }
+        .image-gallery img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        .frosted-glass-container {
+            background-color: rgba(128, 0, 128, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        #lightbox {
+            z-index: 100;
+        }
+        nav a {
+            color: #E0B0FF;
+        }
+        nav a:hover {
+            color: #FFF;
+        }
+        #addToCalendarBtn, #whatsappButton, #verUbicacionBtn, #musicaBtn {
+            background-color: #BA55D3;
+            color: #FFF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #addToCalendarBtn:hover, #whatsappButton:hover, #verUbicacionBtn:hover, #musicaBtn:hover {
+            background-color: #DDA0DD;
+            transform: scale(1.03);
+        }
+        footer a {
+            color: #E0B0FF;
+        }
+        footer a:hover {
+            color: #FFF;
+        }
+        .intro-phrase {
+            font-family: 'Dancing Script', cursive; /* Dancing Script para la frase intro */
+            color: #E0B0FF;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            text-shadow: 
+                0 0 5px rgba(0, 0, 0, 0.7),
+                0 0 10px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .intro-phrase {
+                font-size: 3.5rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .intro-phrase {
+                font-size: 4.5rem;
+            }
+        }
+
+        /* Estilos para las partículas de hadas */
+        .fairy-particle {
+            position: absolute;
+            background-color: #fce4ec; /* Rosa claro, como un brillo de hada */
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: fairy-float 8s infinite ease-in-out;
+            box-shadow: 0 0 5px #fce4ec, 0 0 10px #fce4ec;
+            z-index: 1; /* Asegura que estén detrás del contenido principal pero encima del video */
+        }
+
+        @keyframes fairy-float {
+            0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            50% { transform: translateY(-50px) rotate(180deg) scale(1); opacity: 0.4; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(0) rotate(360deg) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="fixed top-0 left-0 w-full h-full object-cover -z-10">
+        <source src="./video/176481-855531617_medium.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+
+    <div class="frosted-glass-container content-front">
+
+        <nav class="p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-4xl md:text-6xl text-center font-bold animate-subtle-glow" style="color: #DDA0DD;">
+                    MELU FEST
+                </h1>
+                <a href="#contacto" class="nav-link text-white hover:text-yellow-300 text-sm md:text-base">Confirmar Invitación</a>
+            </div>
+        </nav>
+
+        <section class="flex flex-col items-center justify-center h-screen text-center px-4" data-aos="fade-up">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4" style="color: #E0B0FF; text-shadow: 0 0 5px #000, 0 0 10px #000;">¡Bienvenidos al Bosque Encantado!</h2>
+            
+            <p class="intro-phrase max-w-4xl mx-auto">
+                en un bosque encantado, donde los sueños se hacen realidad te espero para compartir juntos este día tan especial
+            </p>
+            
+            <p class="text-xl mb-8">Acompáñanos a celebrar los 15 años de Melania</p>
+            
+            <p class="text-xl mb-2">Sábado, 18 de Octubre | 21:00 hs</p>
+            <p class="text-xl mb-8">Lugar: SU EVENTOS</p>
+            
+            <div id="countdown" class="countdown mb-8"></div>
+            
+            <a id="addToCalendarBtn" href="#" class="inline-block mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Agregar al Calendario
+            </a>
+
+            <button id="musicBtn" class="border-2 px-6 py-3 rounded-full transition-all">
+                <span id="musicBtnText" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
+                    </svg>
+                    Reproducir Música
+                </span>
+            </button>
+        </section>
+
+        <section class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Galería de Fotos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 image-gallery">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_42d96412.jpg" alt="Melania en el bosque" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_47e898ff.jpg" alt="Foto 2" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_85bc70b8.jpg" alt="Foto 3" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Código de Vestimenta</h2>
+                <div class="mb-4">
+                    <img src="./imagenes/85254190-dress-and-suit-icon-isolated-on-white-background-formal-suit-symbol-married-couple-logo.jpg" alt="Código de Vestimenta" class="max-w-sm mx-auto rounded-md shadow-md">
+                </div>
+                <p class="text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                    Elegante con colores basados en la naturaleza.
+                </p>
+            </div>
+        </section>
+        
+        <section class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Información Importante</h2>
+                <p class="text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                    La comida estará a cargo de la cumpleañera. Por favor, los invitados deberán traer su propia bebida. ¡Gracias!
+                </p>
+            </div>
+        </section>
+        
+        <section class="py-10">
+            <div class="container mx-auto text-center px-4">
+                <a id="verUbicacionBtn" href="https://www.google.com/maps/search/SU+EVENTOS,+Juan+Jos%C3%A9+Castelli,+Chaco/@-25.969116,-60.6276859,17z/data=!3m1!4b1?entry=ttu" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Ver Ubicación
+                </a>
+            </div>
+        </section>
+
+        <section class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Sugerencias de Regalo</h2>
+                <p class="mb-8 text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                    Si deseas hacerme un regalo, estas son algunas ideas que me encantarían:
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/mplogo.png" alt="Transferencia" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Transferencia por Alias:<br/>**mela.paredes.i**</p>
+                    </div>
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/money_2916115.png" alt="Efectivo" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Efectivo en Sobre</p>
+                    </div>
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/book_9697560.png" alt="Libros" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Libros de Romance o Distopía</p>
+                    </div>
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/eco-tag_11158797.png" alt="Color Verde" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Mi color favorito es el verde</p>
+                    </div>
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/aretes-de-aro.png" alt="Joyas Doradas" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Joyas de color dorado</p>
+                    </div>
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                        <img src="./imagenes/hello-kitty-icon-1.jpg" alt="Hello Kitty" class="mx-auto w-16 h-16 mb-2">
+                        <p class="text-sm font-semibold">Artículos de Hello Kitty</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Confirma tu Asistencia</h2>
+                <p class="mb-2">La fecha límite para confirmar es hasta el 3 de Octubre.</p>
+                <p class="mb-4">Por favor, ingresa tu nombre y apellido para confirmar tu invitación.</p>
+                <div class="max-w-md mx-auto">
+                    <input type="text" id="nombre" placeholder="Nombre y Apellido" class="w-full px-4 py-2 rounded mb-4 text-gray-800">
+                    <button id="whatsappButton">Enviar Confirmación</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-20" data-aos="fade-up">
+            <div class="container mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">¿Alguna canción que no puede faltar?</h2>
+                <p class="mb-4">Recomienda una canción para que Melu la agregue a su playlist.</p>
+                <div class="max-w-md mx-auto">
+                    <input type="text" id="cancionInput" placeholder="Nombre de la canción y artista" class="w-full px-4 py-2 rounded mb-4 text-gray-800">
+                    <button id="musicaBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M17.472 2.113A8.47 8.47 0 0011.6 0a8.536 8.536 0 00-6.07 2.146l-4.52 4.542a.5.5 0 00-.063.639l5.066 8.796a.5.5 0 00.866 0l4.52-7.854a.5.5 0 00.062-.64l-4.52-4.542A8.49 8.49 0 0017.472 2.113z"/>
+                        </svg>
+                        Recomendar Música
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-10 text-center px-4">
+            <p class="mb-2">Síguela en Instagram: <a href="https://www.instagram.com/mela.paredess/" class="footer-link text-yellow-300 hover:text-yellow-400" target="_blank">@mela.paredess</a></p>
+            <p class="text-sm text-gray-300">Diseñado por <a href="https://www.instagram.com/joel_gpp/" class="footer-link text-yellow-300 hover:text-yellow-400" target="_blank">@joel_gpp</a></p>
+        </footer>
+    </div>
+    
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-[100]">
+        <span class="text-white cursor-pointer absolute top-4 right-4 text-3xl" onclick="closeLightbox()">×</span>
+        <img id="lightboxImage" class="max-w-full max-h-full" src="" alt="Lightbox Image">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const eventDate = new Date('2025-10-18T21:00:00');
+        const countdownElement = document.getElementById('countdown');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicBtnText = document.getElementById('musicBtnText');
+        const audio = new Audio('./audio/yt1z.net - Lana Del Rey - Once Upon A Dream (Official Audio) (320 KBps).mp3');
+        let isPlaying = false;
+        
+        const nombreInput = document.getElementById('nombre');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const cancionInput = document.getElementById('cancionInput');
+        const musicaBtn = document.getElementById('musicaBtn');
+
+        whatsappButton.addEventListener('click', function() {
+            const nombre = nombreInput.value;
+            if (nombre) {
+                const mensaje = `Hola soy ${encodeURIComponent(nombre)} y quiero confirmar mi asistencia al cumpleaños de Melania el 18/10 a las 21:00hs en Juan José Castelli, Chaco.`;
+                const url = `https://wa.me/5493644500644?text=${mensaje}`;
+                window.open(url, '_blank');
+            } else {
+                alert("Por favor, ingresa tu nombre para confirmar.");
+            }
+        });
+        
+        musicaBtn.addEventListener('click', function() {
+            const cancion = cancionInput.value;
+            if (cancion) {
+                const mensaje = `Hola Melu, te recomiendo esta canción para tu fiesta: ${encodeURIComponent(cancion)}`;
+                const url = `https://wa.me/5493644266219?text=${mensaje}`;
+                window.open(url, '_blank');
+            } else {
+                alert("Por favor, ingresa el nombre de una canción.");
+            }
+        });
+
+        document.getElementById('addToCalendarBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const title = encodeURIComponent("Quince Años de Melania");
+            const details = encodeURIComponent("Te esperamos para celebrar los 15 años de Melania en un bosque encantado. ¡No faltes!");
+            const location = encodeURIComponent("SU EVENTOS, Juan José Castelli, Chaco Province, Argentina"); // Ubicación más específica
+            const date = '20251018T210000';
+            const endDate = '20251019T030000';
+
+            const calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${date}/${endDate}&details=${details}&location=${location}`;
+            window.open(calendarUrl, '_blank');
+        });
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeDiff = eventDate - now;
+
+            if (timeDiff <= 0) {
+                countdownElement.innerHTML = '¡El evento ha comenzado!';
+                return;
+            }
+
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        musicBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
+                </svg>Reproducir Música`;
+            } else {
+                audio.play().catch(error => {
+                    console.log("La reproducción automática fue bloqueada. El usuario debe interactuar con la página.");
+                });
+                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>Pausar Música`;
+            }
+            isPlaying = !isPlaying;
+        });
+
+        function openLightbox(src) {
+            document.getElementById('lightboxImage').src = src;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Script para las partículas de hadas
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section'); // Apunta a todas las secciones
+            sections.forEach(section => {
+                // Asegúrate de que la sección tenga un estilo de posición relativo para que las partículas se posicionen correctamente
+                if (window.getComputedStyle(section).position === 'static') {
+                    section.style.position = 'relative';
+                }
+
+                for (let i = 0; i < 5; i++) { // Genera 5 partículas por sección
+                    const particle = document.createElement('div');
+                    particle.classList.add('fairy-particle');
+                    const size = Math.random() * 8 + 4; // Tamaño entre 4px y 12px
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio para un movimiento menos sincronizado
+                    section.appendChild(particle);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
