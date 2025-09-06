@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quince Años de Melania</title>
+    <title>Los Quince Años de Melania</title>
+    
+    <link rel="icon" type="image/x-icon" href="https://www.flaticon.es/icono-gratis/bosque_1502454">
+    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
     <style>
+        /* Animación sutil de brillo para títulos */
         @keyframes subtle-glow {
             0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.1); }
             50% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); }
@@ -15,100 +19,134 @@
         .animate-subtle-glow {
             animation: subtle-glow 3s infinite ease-in-out;
         }
+
+        /* Estilos base del cuerpo */
         body {
-            color: #F0F0F0;
-            font-family: 'Poppins', sans-serif; /* Poppins para el texto general */
+            color: #F0F0F0; /* Color de texto claro */
+            font-family: 'Poppins', sans-serif; /* Fuente principal para legibilidad */
             line-height: 1.6;
-            background-color: #1A1A1A;
-            overflow-x: hidden; /* Evita el scroll horizontal si las partículas se desbordan un poco */
+            background-color: #1A1A1A; /* Fondo oscuro para contraste */
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
+        /* Estilos para títulos principales */
         h1, h2 {
-            text-shadow: none;
-            font-family: 'Dancing Script', cursive; /* Dancing Script para títulos */
+            font-family: 'Dancing Script', cursive; /* Fuente elegante para títulos */
+            text-shadow: none; /* Resetear text-shadow para que Dancing Script sea más limpio por defecto */
         }
+        /* Estilo para el contador regresivo */
         .countdown {
-            font-size: 2rem;
+            font-size: 2.5rem; /* Tamaño más grande para el contador */
             font-weight: bold;
-            color: #DDA0DD;
+            color: #DDA0DD; /* Tono morado/rosa */
+            letter-spacing: 0.1em; /* Espaciado entre letras */
         }
+        /* Contenedor principal para superponer sobre el video */
         .content-front {
             position: relative;
             z-index: 10;
         }
+        /* Estilos del botón de música */
         #musicBtn {
-            background-color: rgba(218, 112, 214, 0.8);
+            background-color: rgba(218, 112, 214, 0.8); /* Fondo semitransparente */
             color: #FFF;
-            font-weight: bold;
+            font-weight: 600; /* Un poco más de peso */
             border-radius: 25px;
             transition: background-color 0.3s ease, transform 0.3s ease;
             border: 1px solid #DDA0DD;
+            padding: 0.75rem 1.5rem; /* Padding uniforme */
         }
         #musicBtn:hover {
             background-color: #DDA0DD;
             transform: scale(1.05);
         }
+        /* Estilos para las imágenes de la galería */
         .image-gallery img {
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover; /* Asegura que las imágenes cubran su área sin distorsión */
+            height: 250px; /* Altura fija para uniformidad en la galería */
+            width: 100%;
         }
         .image-gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03); /* Zoom más sutil */
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
             cursor: pointer;
         }
+        /* Estilo para contenedores con efecto "frosted glass" */
         .frosted-glass-container {
-            background-color: rgba(128, 0, 128, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background-color: rgba(128, 0, 128, 0.2); /* Menos opaco para un efecto más sutil */
+            backdrop-filter: blur(8px); /* Más blur para un mejor efecto */
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px; /* Bordes más redondeados */
+            padding: 2rem; /* Añadir padding para que el contenido no pegue a los bordes */
+            margin: 1rem auto; /* Centrar y añadir margen */
+            max-width: 90%; /* Ajustar ancho máximo */
         }
+        /* Z-index para el lightbox */
         #lightbox {
-            z-index: 100;
+            z-index: 1000; /* Asegurar que el lightbox esté encima de todo */
         }
-        nav a {
-            color: #E0B0FF;
+        /* Estilos para enlaces de navegación y footer */
+        nav a, footer a {
+            color: #E0B0FF; /* Color lila claro */
+            transition: color 0.3s ease;
+            text-decoration: none; /* Eliminar subrayado por defecto */
         }
-        nav a:hover {
+        nav a:hover, footer a:hover {
             color: #FFF;
+            text-decoration: underline; /* Subrayar al pasar el mouse */
         }
+        /* Estilos para botones de acción */
         #addToCalendarBtn, #whatsappButton, #verUbicacionBtn, #musicaBtn {
-            background-color: #BA55D3;
+            background-color: #BA55D3; /* Morado medio */
             color: #FFF;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 0.85rem 1.75rem; /* Padding ligeramente mayor */
+            border-radius: 0.75rem; /* Bordes más redondeados */
             display: inline-flex;
             align-items: center;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 600; /* Texto más fuerte */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
         }
         #addToCalendarBtn:hover, #whatsappButton:hover, #verUbicacionBtn:hover, #musicaBtn:hover {
-            background-color: #DDA0DD;
-            transform: scale(1.03);
+            background-color: #DDA0DD; /* Tono morado/rosa en hover */
+            transform: translateY(-2px) scale(1.02); /* Pequeño levantamiento y escala */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        footer a {
-            color: #E0B0FF;
-        }
-        footer a:hover {
-            color: #FFF;
-        }
+        /* Estilo para la frase introductoria */
         .intro-phrase {
-            font-family: 'Dancing Script', cursive; /* Dancing Script para la frase intro */
+            font-family: 'Dancing Script', cursive;
             color: #E0B0FF;
-            font-size: 2.5rem;
-            line-height: 1.2;
+            font-size: 2.2rem; /* Ajuste para mejor lectura en desktop */
+            line-height: 1.3;
             text-shadow: 
-                0 0 5px rgba(0, 0, 0, 0.7),
-                0 0 10px rgba(0, 0, 0, 0.5),
-                0 0 15px rgba(0, 0, 0, 0.3);
+                0 0 8px rgba(0, 0, 0, 0.8), /* Sombra más intensa para contraste */
+                0 0 15px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(0, 0, 0, 0.4);
             margin-bottom: 2.5rem;
+            max-width: 800px; /* Ancho máximo para legibilidad */
+            margin-left: auto;
+            margin-right: auto;
         }
         @media (min-width: 768px) {
             .intro-phrase {
-                font-size: 3.5rem;
+                font-size: 3rem; /* Tamaño para tabletas */
             }
         }
         @media (min-width: 1024px) {
             .intro-phrase {
-                font-size: 4.5rem;
+                font-size: 3.8rem; /* Tamaño para pantallas grandes */
             }
+        }
+        /* Ajuste de tamaño de texto para móviles */
+        @media (max-width: 767px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            .countdown { font-size: 1.8rem; }
+            .text-xl { font-size: 1.1rem; }
+            .intro-phrase { font-size: 1.8rem; }
+            .frosted-glass-container { padding: 1.5rem; }
         }
 
         /* Estilos para las partículas de hadas */
@@ -121,13 +159,14 @@
             animation: fairy-float 8s infinite ease-in-out;
             box-shadow: 0 0 5px #fce4ec, 0 0 10px #fce4ec;
             z-index: 1; /* Asegura que estén detrás del contenido principal pero encima del video */
+            filter: blur(1px); /* Un pequeño blur para un efecto más etéreo */
         }
 
         @keyframes fairy-float {
             0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
-            20% { opacity: 0.8; }
-            50% { transform: translateY(-50px) rotate(180deg) scale(1); opacity: 0.4; }
-            80% { opacity: 0.8; }
+            20% { opacity: 0.7; } /* Mayor opacidad máxima */
+            50% { transform: translateY(-70px) rotate(180deg) scale(1.1); opacity: 0.3; } /* Mayor movimiento */
+            80% { opacity: 0.7; }
             100% { transform: translateY(0) rotate(360deg) scale(0.5); opacity: 0; }
         }
     </style>
@@ -138,84 +177,91 @@
         Tu navegador no soporta video.
     </video>
 
-    <div class="frosted-glass-container content-front">
+    <div class="relative z-10">
+        <div class="fixed inset-0 bg-black opacity-30 -z-10"></div>
+    </div>
 
-        <nav class="p-4">
+    <div class="content-front">
+
+        <nav class="p-4 bg-transparent absolute top-0 left-0 w-full z-20">
             <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-4xl md:text-6xl text-center font-bold animate-subtle-glow" style="color: #DDA0DD;">
+                <h1 class="text-5xl md:text-6xl font-bold animate-subtle-glow" style="color: #DDA0DD;">
                     MELU FEST
                 </h1>
-                <a href="#contacto" class="nav-link text-white hover:text-yellow-300 text-sm md:text-base">Confirmar Invitación</a>
+                <a href="#contacto" class="nav-link text-lg md:text-xl px-4 py-2 rounded-lg bg-purple-700 bg-opacity-40 hover:bg-opacity-60 transition duration-300">Confirmar Invitación</a>
             </div>
         </nav>
 
-        <section class="flex flex-col items-center justify-center h-screen text-center px-4" data-aos="fade-up">
-            <h2 class="text-4xl md:text-6xl font-bold mb-4" style="color: #E0B0FF; text-shadow: 0 0 5px #000, 0 0 10px #000;">¡Bienvenidos al Bosque Encantado!</h2>
+        <section class="flex flex-col items-center justify-center min-h-screen text-center px-4 pt-32 pb-16" data-aos="fade-up">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6" style="color: #E0B0FF; text-shadow: 0 0 10px #000, 0 0 20px #000;">¡Bienvenidos al Bosque Encantado!</h2>
             
-            <p class="intro-phrase max-w-4xl mx-auto">
+            <p class="intro-phrase max-w-4xl mx-auto mb-8">
                 en un bosque encantado, donde los sueños se hacen realidad te espero para compartir juntos este día tan especial
             </p>
             
-            <p class="text-xl mb-8">Acompáñanos a celebrar los 15 años de Melania</p>
+            <p class="text-2xl mb-4 font-semibold">Acompáñanos a celebrar los 15 años de Melania</p>
             
-            <p class="text-xl mb-2">Sábado, 18 de Octubre | 21:00 hs</p>
+            <p class="text-xl mb-2">Sábado, 18 de Octubre</p>
+            <p class="text-3xl mb-4 font-bold" style="color: #BA55D3;">21:00 hs</p>
             <p class="text-xl mb-8">Lugar: SU EVENTOS</p>
             
-            <div id="countdown" class="countdown mb-8"></div>
+            <div id="countdown" class="countdown mb-10"></div>
             
-            <a id="addToCalendarBtn" href="#" class="inline-block mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Agregar al Calendario
-            </a>
-
-            <button id="musicBtn" class="border-2 px-6 py-3 rounded-full transition-all">
-                <span id="musicBtnText" class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <a id="addToCalendarBtn" href="#" class="inline-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    Reproducir Música
-                </span>
-            </button>
+                    Agregar al Calendario
+                </a>
+
+                <button id="musicBtn" class="flex items-center justify-center">
+                    <span id="musicBtnText" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
+                        </svg>
+                        Reproducir Música
+                    </span>
+                </button>
+            </div>
         </section>
 
-        <section class="py-20" data-aos="fade-up">
+        <section class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Galería de Fotos</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 image-gallery">
-                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_42d96412.jpg" alt="Melania en el bosque" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
-                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_47e898ff.jpg" alt="Foto 2" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
-                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_85bc70b8.jpg" alt="Foto 3" class="rounded-lg shadow-lg" onclick="openLightbox(this.src)">
+                <h2 class="text-4xl font-bold mb-10" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">Galería de Fotos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 image-gallery">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_42d96412.jpg" alt="Melania en el bosque" onclick="openLightbox(this.src)">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_47e898ff.jpg" alt="Foto 2" onclick="openLightbox(this.src)">
+                    <img src="./imagenes/Imagen de WhatsApp 2025-08-05 a las 18.49.34_85bc70b8.jpg" alt="Foto 3" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
 
-        <section class="py-20" data-aos="fade-up">
+        <section class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Código de Vestimenta</h2>
-                <div class="mb-4">
-                    <img src="./imagenes/85254190-dress-and-suit-icon-isolated-on-white-background-formal-suit-symbol-married-couple-logo.jpg" alt="Código de Vestimenta" class="max-w-sm mx-auto rounded-md shadow-md">
+                <h2 class="text-4xl font-bold mb-8" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">Código de Vestimenta</h2>
+                <div class="mb-6 max-w-sm mx-auto p-4 bg-purple-900 bg-opacity-20 rounded-lg shadow-inner">
+                    <img src="./imagenes/85254190-dress-and-suit-icon-isolated-on-white-background-formal-suit-symbol-married-couple-logo.jpg" alt="Código de Vestimenta" class="max-w-xs mx-auto rounded-md shadow-lg">
                 </div>
-                <p class="text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                <p class="text-xl text-white font-light" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
                     Elegante con colores basados en la naturaleza.
                 </p>
             </div>
         </section>
         
-        <section class="py-20" data-aos="fade-up">
+        <section class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Información Importante</h2>
-                <p class="text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                <h2 class="text-4xl font-bold mb-8" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">Información Importante</h2>
+                <p class="text-xl text-white font-light" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
                     La comida estará a cargo de la cumpleañera. Por favor, los invitados deberán traer su propia bebida. ¡Gracias!
                 </p>
             </div>
         </section>
         
-        <section class="py-10">
+        <section class="py-10" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <a id="verUbicacionBtn" href="https://www.google.com/maps/search/SU+EVENTOS,+Juan+Jos%C3%A9+Castelli,+Chaco/@-25.969116,-60.6276859,17z/data=!3m1!4b1?entry=ttu" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a id="verUbicacionBtn" href="http://googleusercontent.com/maps.google.com/9" target="_blank" class="text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -224,62 +270,67 @@
             </div>
         </section>
 
-        <section class="py-20" data-aos="fade-up">
+        <section class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Sugerencias de Regalo</h2>
-                <p class="mb-8 text-lg text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+                <h2 class="text-4xl font-bold mb-8" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">Sugerencias de Regalo</h2>
+                <p class="mb-10 text-xl text-white font-light" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
                     Si deseas hacerme un regalo, estas son algunas ideas que me encantarían:
                 </p>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/mplogo.png" alt="Transferencia" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Transferencia por Alias:<br/>**mela.paredes.i**</p>
+                        <p class="text-sm font-semibold text-center leading-tight">Transferencia por Alias:<br/><span class="text-purple-300 font-bold">mela.paredes.i</span></p>
                     </div>
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/money_2916115.png" alt="Efectivo" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Efectivo en Sobre</p>
+                        <p class="text-sm font-semibold text-center">Efectivo en Sobre</p>
                     </div>
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/book_9697560.png" alt="Libros" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Libros de Romance o Distopía</p>
+                        <p class="text-sm font-semibold text-center">Libros de Romance o Distopía</p>
                     </div>
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/eco-tag_11158797.png" alt="Color Verde" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Mi color favorito es el verde</p>
+                        <p class="text-sm font-semibold text-center">Mi color favorito es el verde</p>
                     </div>
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/aretes-de-aro.png" alt="Joyas Doradas" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Joyas de color dorado</p>
+                        <p class="text-sm font-semibold text-center">Joyas de color dorado</p>
                     </div>
-                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl frosted-glass-container">
+                    <div class="bg-purple-800 bg-opacity-30 p-4 rounded-lg shadow-xl flex flex-col items-center justify-center h-full">
                         <img src="./imagenes/hello-kitty-icon-1.jpg" alt="Hello Kitty" class="mx-auto w-16 h-16 mb-2">
-                        <p class="text-sm font-semibold">Artículos de Hello Kitty</p>
+                        <p class="text-sm font-semibold text-center">Artículos de Hello Kitty</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="py-20" data-aos="fade-up">
+        <section id="contacto" class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Confirma tu Asistencia</h2>
-                <p class="mb-2">La fecha límite para confirmar es hasta el 3 de Octubre.</p>
-                <p class="mb-4">Por favor, ingresa tu nombre y apellido para confirmar tu invitación.</p>
+                <h2 class="text-4xl font-bold mb-8" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">Confirma tu Asistencia</h2>
+                <p class="mb-4 text-lg font-light">La fecha límite para confirmar es hasta el <span class="font-semibold text-purple-300">3 de Octubre</span>.</p>
+                <p class="mb-6 text-lg">Por favor, ingresa tu nombre y apellido para confirmar tu invitación:</p>
                 <div class="max-w-md mx-auto">
-                    <input type="text" id="nombre" placeholder="Nombre y Apellido" class="w-full px-4 py-2 rounded mb-4 text-gray-800">
-                    <button id="whatsappButton">Enviar Confirmación</button>
+                    <input type="text" id="nombre" placeholder="Nombre y Apellido" class="w-full px-5 py-3 rounded-lg mb-6 text-gray-800 border-2 border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    <button id="whatsappButton" class="w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 inline-block" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.911C.11 6.53 6.042.016 13.016.016s12.906 6.514 12.906 14.5c0 3.184-1.127 6.381-3.694 8.761l-1.782 1.751-.742-.397c-.901-.482-3.15-.494-3.874-.412.355.228.665.485.938.751.684.687 1.488 1.139 2.457 1.139h.003c.518 0 1.025-.084 1.516-.245l3.295 1.761c.143.076.31-.036.27-.197l-1.92-6.985c2.187-2.981 3.33-6.495 3.33-10.158 0-7.398-6.102-13.414-13.6-13.414-7.498 0-13.6 6.016-13.6 13.414 0 2.973.948 5.767 2.65 8.04L.057 24zm4.398-7.859l-1.144 4.179 4.148-1.083c.854.463 1.776.711 2.76.711h.003c6.043 0 10.957-4.904 10.957-10.957 0-6.053-4.914-10.957-10.957-10.957-6.043 0-10.957 4.904-10.957 10.957 0 2.378.784 4.673 2.253 6.578zM17.47 13.003c-.097-.05-.246-.075-.357-.101-.161-.038-.346-.075-.54-.093-.314-.029-.613-.035-.851-.013-.24.02-.452.12-.614.283-.162.162-.39.388-.571.55-.183.162-.346.228-.56.228-.215 0-.41-.07-.6-.16-.193-.09-.434-.145-.826-.35-.393-.204-.928-.485-1.765-1.088-.654-.464-1.1-.983-1.46-1.396-.36-.413-.037-.64-.28-.888-.22-.22-.49-.29-.68-.3-.19-.01-.41-.01-.58-.01-.2-.007-.44-.007-.67-.007-.27 0-.74-.101-.99-.371-.25-.268-.962-1.229-.962-2.984 0-1.757 1.272-2.583 1.378-2.673.106-.09.227-.156.368-.156.142 0 .285.006.39.01.12.008.26.015.4.032.2.02.43.048.63.153.19.106.34.254.46.402.12.15.25.32.33.45.08.13.14.24.28.47.14.22.28.47.45.69.17.22.34.25.56.22.22-.03.88-.34 1.01-.4.13-.06.27-.15.4-.23.13-.08.28-.15.4-.21.13-.06.25-.11.4-.11.16 0 .34.02.49.1.15.08.38.22.49.37.11.15.22.34.3.5.08.16.15.34.2.5.05.16.08.31.08.47 0 .22-.04.4-.07.47-.03.07-.1.1-.17.13z"/>
+                        </svg>
+                        Enviar Confirmación
+                    </button>
                 </div>
             </div>
         </section>
         
-        <section class="py-20" data-aos="fade-up">
+        <section class="py-20 frosted-glass-container" data-aos="fade-up" data-aos-duration="1000">
             <div class="container mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold mb-6" style="color: #DDA0DD; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">¿Alguna canción que no puede faltar?</h2>
-                <p class="mb-4">Recomienda una canción para que Melu la agregue a su playlist.</p>
+                <h2 class="text-4xl font-bold mb-8" style="color: #DDA0DD; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);">¿Alguna canción que no puede faltar?</h2>
+                <p class="mb-6 text-lg">Recomienda una canción para que Melu la agregue a su playlist.</p>
                 <div class="max-w-md mx-auto">
-                    <input type="text" id="cancionInput" placeholder="Nombre de la canción y artista" class="w-full px-4 py-2 rounded mb-4 text-gray-800">
-                    <button id="musicaBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M17.472 2.113A8.47 8.47 0 0011.6 0a8.536 8.536 0 00-6.07 2.146l-4.52 4.542a.5.5 0 00-.063.639l5.066 8.796a.5.5 0 00.866 0l4.52-7.854a.5.5 0 00.062-.64l-4.52-4.542A8.49 8.49 0 0017.472 2.113z"/>
+                    <input type="text" id="cancionInput" placeholder="Nombre de la canción y artista" class="w-full px-5 py-3 rounded-lg mb-6 text-gray-800 border-2 border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    <button id="musicaBtn" class="w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                         </svg>
                         Recomendar Música
                     </button>
@@ -288,72 +339,81 @@
         </section>
 
         <footer class="py-10 text-center px-4">
-            <p class="mb-2">Síguela en Instagram: <a href="https://www.instagram.com/mela.paredess/" class="footer-link text-yellow-300 hover:text-yellow-400" target="_blank">@mela.paredess</a></p>
-            <p class="text-sm text-gray-300">Diseñado por <a href="https://www.instagram.com/joel_gpp/" class="footer-link text-yellow-300 hover:text-yellow-400" target="_blank">@joel_gpp</a></p>
+            <p class="mb-3 text-lg">Síguela en Instagram: <a href="https://www.instagram.com/mela.paredess/" class="footer-link" target="_blank">@mela.paredess</a></p>
+            <p class="text-sm text-gray-400">Diseñado con <span style="color:#DDA0DD;">❤</span> por <a href="https://www.instagram.com/joel_gpp/" class="footer-link" target="_blank">@joel_gpp</a></p>
         </footer>
     </div>
     
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-[100]">
-        <span class="text-white cursor-pointer absolute top-4 right-4 text-3xl" onclick="closeLightbox()">×</span>
-        <img id="lightboxImage" class="max-w-full max-h-full" src="" alt="Lightbox Image">
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-[1000]">
+        <span class="text-white cursor-pointer absolute top-6 right-6 text-4xl" onclick="closeLightbox()">×</span>
+        <img id="lightboxImage" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-xl" src="" alt="Imagen de Galería">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1200, // Duración de las animaciones de AOS
+            once: true, // Animaciones solo una vez al hacer scroll
+        });
 
-        const eventDate = new Date('2025-10-18T21:00:00');
+        const eventDate = new Date('2025-10-18T21:00:00'); // Fecha y hora del evento
         const countdownElement = document.getElementById('countdown');
         const musicBtn = document.getElementById('musicBtn');
         const musicBtnText = document.getElementById('musicBtnText');
         const audio = new Audio('./audio/yt1z.net - Lana Del Rey - Once Upon A Dream (Official Audio) (320 KBps).mp3');
+        audio.loop = true; // Reproducir en bucle
         let isPlaying = false;
         
         const nombreInput = document.getElementById('nombre');
         const whatsappButton = document.getElementById('whatsappButton');
         const cancionInput = document.getElementById('cancionInput');
-        const musicaBtn = document.getElementById('musicaBtn');
+        const musicaBtnRecomendar = document.getElementById('musicaBtn'); // Renombrado para evitar conflicto con musicBtn de audio
 
+        // Función para enviar confirmación por WhatsApp
         whatsappButton.addEventListener('click', function() {
-            const nombre = nombreInput.value;
+            const nombre = nombreInput.value.trim();
             if (nombre) {
                 const mensaje = `Hola soy ${encodeURIComponent(nombre)} y quiero confirmar mi asistencia al cumpleaños de Melania el 18/10 a las 21:00hs en Juan José Castelli, Chaco.`;
-                const url = `https://wa.me/5493644500644?text=${mensaje}`;
+                const url = `https://wa.me/5493644500644?text=${mensaje}`; // Número de Melania
                 window.open(url, '_blank');
             } else {
-                alert("Por favor, ingresa tu nombre para confirmar.");
+                alert("Por favor, ingresa tu nombre y apellido para confirmar.");
             }
         });
         
-        musicaBtn.addEventListener('click', function() {
-            const cancion = cancionInput.value;
+        // Función para recomendar canción por WhatsApp
+        musicaBtnRecomendar.addEventListener('click', function() {
+            const cancion = cancionInput.value.trim();
             if (cancion) {
-                const mensaje = `Hola Melu, te recomiendo esta canción para tu fiesta: ${encodeURIComponent(cancion)}`;
-                const url = `https://wa.me/5493644266219?text=${mensaje}`;
+                const mensaje = `Hola Melu, te recomiendo esta canción para tu playlist: ${encodeURIComponent(cancion)}`;
+                const url = `https://wa.me/5493644266219?text=${mensaje}`; // Número de Melania para música
                 window.open(url, '_blank');
             } else {
-                alert("Por favor, ingresa el nombre de una canción.");
+                alert("Por favor, ingresa el nombre de una canción y el artista.");
             }
         });
 
+        // Función para agregar evento al calendario de Google
         document.getElementById('addToCalendarBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            const title = encodeURIComponent("Quince Años de Melania");
-            const details = encodeURIComponent("Te esperamos para celebrar los 15 años de Melania en un bosque encantado. ¡No faltes!");
-            const location = encodeURIComponent("SU EVENTOS, Juan José Castelli, Chaco Province, Argentina"); // Ubicación más específica
-            const date = '20251018T210000';
-            const endDate = '20251019T030000';
+            const title = encodeURIComponent("Los 15 Años de Melania");
+            const details = encodeURIComponent("¡Te esperamos para celebrar los 15 años de Melania en un bosque encantado! Habrá buena música y mucha alegría. La comida es por cuenta de la cumpleañera, por favor trae tu propia bebida. ¡No faltes!");
+            const location = encodeURIComponent("SU EVENTOS, Juan José Castelli, Chaco Province, Argentina");
+            const date = '20251018T210000'; // Formato YYYYMMDDTHHMMSS
+            const endDate = '20251019T030000'; // Ejemplo: 6 horas después
 
             const calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${date}/${endDate}&details=${details}&location=${location}`;
             window.open(calendarUrl, '_blank');
         });
 
+        // Función para actualizar el contador regresivo
         function updateCountdown() {
             const now = new Date();
             const timeDiff = eventDate - now;
 
             if (timeDiff <= 0) {
-                countdownElement.innerHTML = '¡El evento ha comenzado!';
+                countdownElement.innerHTML = '¡El gran día ha llegado!';
+                clearInterval(countdownInterval); // Detener el intervalo cuando el evento comienza
                 return;
             }
 
@@ -362,55 +422,67 @@
             const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            countdownElement.innerHTML = `${days} <small>Días</small> | ${hours} <small>Hs</small> | ${minutes} <small>Min</small> | ${seconds} <small>Seg</small>`;
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Llamar una vez al cargar para evitar el retraso inicial
 
+        // Control de reproducción de música
         musicBtn.addEventListener('click', function() {
             if (isPlaying) {
                 audio.pause();
-                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
                 </svg>Reproducir Música`;
             } else {
                 audio.play().catch(error => {
-                    console.log("La reproducción automática fue bloqueada. El usuario debe interactuar con la página.");
+                    console.error("Error al reproducir audio:", error);
+                    alert("La reproducción automática de música fue bloqueada por el navegador. Por favor, haz clic de nuevo si deseas escucharla.");
                 });
-                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                musicBtnText.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>Pausar Música`;
             }
             isPlaying = !isPlaying;
         });
 
+        // Funciones para Lightbox de galería
         function openLightbox(src) {
             document.getElementById('lightboxImage').src = src;
             document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = ''; // Restaura el scroll del fondo
         }
 
         // Script para las partículas de hadas
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section'); // Apunta a todas las secciones
+            const sections = document.querySelectorAll('.frosted-glass-container'); // Solo en las secciones con efecto de cristal
             sections.forEach(section => {
                 // Asegúrate de que la sección tenga un estilo de posición relativo para que las partículas se posicionen correctamente
                 if (window.getComputedStyle(section).position === 'static') {
                     section.style.position = 'relative';
                 }
 
-                for (let i = 0; i < 5; i++) { // Genera 5 partículas por sección
+                const numParticles = Math.floor(Math.random() * (10 - 5 + 1)) + 5; // Entre 5 y 10 partículas por sección
+                for (let i = 0; i < numParticles; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('fairy-particle');
-                    const size = Math.random() * 8 + 4; // Tamaño entre 4px y 12px
+                    const size = Math.random() * 6 + 3; // Tamaño entre 3px y 9px
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
+                    
+                    // Posición inicial aleatoria dentro de la sección
                     particle.style.left = `${Math.random() * 100}%`;
                     particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Ajustar duración de la animación para mayor variedad
+                    particle.style.animationDuration = `${Math.random() * 6 + 5}s`; // Duración entre 5s y 11s
                     particle.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio para un movimiento menos sincronizado
+                    
                     section.appendChild(particle);
                 }
             });
